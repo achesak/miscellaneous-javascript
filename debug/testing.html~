@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Testing</title>
+<script type="text/javascript" src="debug.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+//]]>
+</script>
+<head>
+<body>
+<p>Testing</p>
+</body>
+</html>
