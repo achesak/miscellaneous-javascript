@@ -1,9 +1,0 @@
-/* This defines the $.preload() function used to preload images. It accepts unlimited parameters. */
-
-$.preload = function() {
-    var n;
-    for (var i = 0; i < arguments.length; i++) {
-        n = new Image();
-        n.src = arguments[i];
-    }
-};

@@ -1,9 +1,0 @@
-HTMLDocument.prototype.parseNodesFromString = function(x) {
-    var f = this.createDocumentFragment();
-    var t = this.createElement("div");
-    t.innerHTML = x;
-    while (t.firstChild) {
-        f.appendChild(t.firstChild);
-    }
-    return f;
-};
