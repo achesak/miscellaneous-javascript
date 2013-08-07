@@ -1,0 +1,47 @@
+/* isDefined(x) -- returns whether or not x is defined */
+var isDefined = function(x) {
+    return x !== undefined;
+};
+
+var isSomething = function(x) {
+    if(!isDefined(x) || x === null) {
+        return false;
+    }
+    if(typeof x == "number" && x === 0) {
+        return false;
+    }
+    if(typeof x == "string" && x === "") {
+        return false;
+    }
+    if(isArrayLike(x) && x.length == 0) {
+        return false;
+    }
+    if(typeof x == "object" && isEmptyObject(x)) {
+        return false;
+    }
+    return true;
+};
+
+var isNothing = function(x) {
+    return !isSomething(x);
+};
+
+var isEmptyObject = function(x) {
+    if(typeof x != "object") {
+        return null;
+    }
+    for (var i in x) {
+        if(x.hasOwnProperty(i)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+var isArrayLike = function(x) {
+    return x && typeof x == "object" && isDefined(x.length) && isFinite(x.length) && x.length >= 0 && x.length === Math.floor(x.length) && x.length < 4294967296;
+};
+
+var isSameTypeAs = function(x, y) {
+    return typeof x === typeof y;
+};

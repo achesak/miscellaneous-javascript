@@ -1,0 +1,49 @@
+Element.prototype.getContent = function(x) {
+    if(x == "text") {
+        if(isDefined(this.textContent)) {
+            return this.textContent;
+        } else {
+            return this.innerText;
+        }
+    } else {
+        return this.innerHTML;
+    }
+};
+
+Element.prototype.setContent = function(x, y) {
+    if(y == "text") {
+        if(isDefined(this.textContent)) {
+            this.textContent = x;
+        } else {
+            this.innerText = x;
+        }
+    } else {
+        this.innerHTML = x;
+    }
+};
+
+Element.prototype.appendContent = function(x, y) {
+    if(y == "text") {
+        if(isDefined(this.textContent)) {
+            this.textContent += x;
+        } else {
+            this.innerText += x;
+        }
+    } else {
+        this.innerHTML += x;
+    }
+};
+
+Element.prototype.prependContent = function(x, y) {
+    if(y == "text") {
+        if(isDefined(this.textContent)) {
+            this.textContent = x + this.textContent;
+        } else {
+            this.innerText = x + this.innerText;
+        }
+    } else {
+        this.innerHTML = x + this.innerHTML;
+    }
+};
+
+Element.prototype.content = function(x, y, z) {

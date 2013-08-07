@@ -1,0 +1,114 @@
+
+/* htmlelement.html() -- works with the inner html of an element
+
+if no parameters, the function returns the inner html
+if one parameter, the function sets the parameter as inner html of the element
+*/
+HTMLElement.prototype.html = function(x) {
+    if(this.innerHTML !== undefined) {
+        if(x !== undefined) {
+            this.innerHTML = x;
+        } else {
+            return this.innerHTML;
+        }
+    }
+};
+
+/* htmlelement.prepend(x) -- adds x to the start of the inner html of the element */
+HTMLElement.prototype.prepend = function(x) {
+    if(this.innerHTML !== undefined) {
+        this.innerHTML = x + this.innerHTML;
+    }
+};
+
+/* htmlelement.append(x) -- adds x to the end of the inner html of the element */
+HTMLElement.prototype.append = function(x) {
+    if(this.innerHTML !== undefined) {
+        this.innerHTML += x;
+    }
+};
+
+/* htmlelement.css(x) --
+
+IF x IS AN OBJECT: sets style for the element with the object keys being the style property name and the object values being the values for the property
+IF x IS A STRING: returns the style value that has that name
+IF x IS AN ARRAY: same as for string, but returns an array
+*/
+HTMLElement.prototype.css = function(x) {
+    if(typeof x == "object") {
+        for (var i in x) {
+            this.style[i] = x[i];
+        }
+    } else if(typeof x == "string") {
+        return this.style[x];
+    } else if(x instanceof Array) {
+        var a = [];
+        for (var i = 0; i < x.length; i++) {
+            a[i] = this.style[x[i]];
+        }
+    }
+};
+
+/* $.create(x, y) -- creates an element
+
+PARAMETERS:
+x - name of element (example: "p", "div", "img", etc.)
+y - object with optional parameters
+    - attributes - object with attributes, with the keys being the attribute names and the values being the attribute values
+    - css - object with the style for the element
+    - children -
+      - if array: will append all elements as children of the element. Any strings will be converted to text nodes
+      - if string: will be converted to a text node and appended as a child
+      - else: will be appended as a child
+*/
+$.create = function(x, y) {
+    var e = document.createElement(x);
+    if(y) {
+        if(y.attributes) {
+            for (var i in y.attributes) {
+                e.setAttribute(i, y.attributes[i]);
+            }
+        }
+        if(y.css) {
+            for (var j in y.css) {
+                e.style[j] = y.css[j];
+            }
+        }
+        if(y.children) {
+            if(y.children instanceof Array) {
+                for (var k = 0; k < y.children.length; k++) {
+                    var f = y.children[k];
+                    if(typeof f == "string") {
+                        f = document.createTextNode(f);
+                    }
+                    e.appendChild(f)
+                }
+            } else if(typeof y.children == "string") {
+                e.appendChild(document.createTextNode(y.children));
+            } else {
+                e.appendChild(y.children);
+            }
+        }
+    }
+    return e;
+};
+
+/* $.createComment(x) -- creates a comment, with x as data */
+$.createComment = function(x) {
+    return document.createComment(x);
+};
+
+/* $.createCDATA(x) -- creates a CDATA section, with x as data */
+$.createCDATA = function(x) {
+    return document.createCDATASection(x);
+};
+
+/* $.createFragment() -- creates an empty document fragment */
+$.createFragment = function() {
+    return document.createDocumentFragment();
+};
+
+/* $.createText(x) -- creates a text node, with x as data */
+$.createText = function(x) {
+    return document.createTextNode(x);
+};
