@@ -1,7 +1,0 @@
-$.head = function(x, y) {
-    var r = new XMLHttpRequest();
-    var c = 0;
-    var t;
-    var p1;
-    if(y.params) {
-    

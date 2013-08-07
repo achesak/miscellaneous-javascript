@@ -1,7 +1,0 @@
-RANGE
-
-range() creates an array based on the numbers passed to it.
-
-* If there is one argument, it is used as the maximum number, exclusive. The array starts with 0.
-* If there are two arguments, the first number is used as the low number (inclusive), and the second number is used as the maximux number (exclusive).
-* If there are three arguments, the first number is used as the low number (inclusive), the second number is used as the maximum number (exclusive), and the third number is used as the increment.
