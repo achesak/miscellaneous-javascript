@@ -1,3 +1,10 @@
 Miscellaneous JavaScript files.
 
 These should all work, but it's not fully documented yet.
+
+COMPLETE:
+char/char.js
+debug/debug.js
+range/range.js
+timers/timers.js
+xor/xor.js
