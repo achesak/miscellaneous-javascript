@@ -8,3 +8,6 @@ debug/debug.js
 range/range.js
 timers/timers.js
 xor/xor.js
+core/is.js
+     typeof.js
+     NOT: core.js
