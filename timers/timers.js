@@ -19,19 +19,38 @@ var Timers = {
  * be passed). Returning false from the function will cancel the timer.
  */
 interval: function(func, time, obj, args) {
+    
+    // Variable to remember the return value.
     var r;
+    
+    // If no arguments were specified, use an empty array.
     var a = args ? args : [];
+    
+    // If no object was specified, use null.
     var o = obj ? obj : null;
+    
+    // Create the function to be run.
     var ifunc = function() {
+        
+        // If the last run retured false, don't continue the interval.
         if(r === false) {
             return;
         }
+        
+        // If something was returned, add it as the first argument.
         if(r !== undefined) {
             r = func.apply(o, [r].concat(a));
+        
+        // If nothing was returned, or this is the first time, just use
+        // the arguments.
         } else {
             r = func.apply(o, a);
         }
+        
+        // Set the timer.
         setTimeout(ifunc, time)
+    
+    // Run the function.
     ifunc();
 },
 
@@ -49,12 +68,22 @@ interval: function(func, time, obj, args) {
  * [none]
  */
 timeout: function(func, time, obj, args) {
+    
+    // If no object was specified, use null.
     var o = obj ? obj : null;
+    
+    // If arguments were specified:
     if(args) {
+        
+        // Set the timer.
         setTimeout(function() {
             func.apply(o, args);
         }, time);
+    
+    // If no arguments were specified:
     } else {
+        
+        // Set the timer.
         setTimeout(function() {
             func.apply(o);
         }, time);
